@@ -1,0 +1,66 @@
+Develop a C# program to generate and Print Pascal Triangle using Two    Dimensional arrays.
+ Code:
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int rows = 5; // You can change the number of rows as needed
+
+        int[][] pascalTriangle = GeneratePascalTriangle(rows);
+
+        Console.WriteLine("Pascal's Triangle:");
+
+        PrintPascalTriangle(pascalTriangle);
+
+        Console.ReadLine();
+    }
+
+    static int[][] GeneratePascalTriangle(int numRows)
+    {
+        int[][] triangle = new int[numRows][];//object creation
+
+        for (int i = 0; i < numRows; i++)
+        {
+            triangle[i] = new int[i + 1];
+            triangle[i][0] = 1; // First element in each row is always 1
+
+            for (int j = 1; j < i; j++)
+            {
+                // Each element (except the first and last) is the sum of the two elements above it in the previous row
+                triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+            }
+
+            triangle[i][i] = 1; // Last element in each row is always 1
+        }
+
+        return triangle;
+    }
+
+    static void PrintPascalTriangle(int[][] triangle)
+    {
+        foreach (var row in triangle)
+        {
+            foreach (var number in row)
+            {
+                Console.Write(number + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+Output:
+Pascal's Triangle:
+ 
+            1
+          1   1
+         1  2  1
+        1  3  3  1
+      1  4   6  4  1
+     1  5  10  10 5  1
+    1  6  15  20 15 6  1
+
+
+
+
